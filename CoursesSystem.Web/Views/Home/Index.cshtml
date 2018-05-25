@@ -1,0 +1,42 @@
+﻿@model HomeIndexViewModel
+
+@{
+    ViewData["Title"] = "Courses System";
+}
+
+
+<div class="row">
+    @Html.Partial("_CoursesPartial")
+
+</div>
+
+@if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@foreach (var course in Model.Courses)
+{
+    <div class="row">
+        <div class="form-group col-lg-6 col-xs-6">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    @course.Title <br />
+                    @course.Trainer
+                    <a class="btn btn-default btn-sm" href="/course/details?courseId=@course.Id">
+                        Details
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CourseTrainerModel>
+
+@{
+    ViewData["Title"] = "Your Courses";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Start Date
+            </th>
+
+            <th>
+                End Date
+            </th>
+            <th>
+                Students
+            </th>
+            <th>
+                Reviews
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var course in Model)
+    {
+        <tr>
+            <td>
+                @course.Title
+            </td>
+
+            <td>
+                @course.StartDate
+            </td>
+
+            <td>
+                @course.EndDate
+            </td>
+
+            <td>
+                <a class="btn btn-default btn-sm" href="/trainer/students/@course.Id">See Students</a>
+            </td>
+            <td>
+                <a class="btn btn-default btn-sm" href="/trainer/course/reviews/@course.Id">See Reviews</a>
+            </td>
+
+        </tr>
+}
+
+    </tbody>
+
+</table>

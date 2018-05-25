@@ -1,0 +1,75 @@
+﻿@model StudentWithGradeModel
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<table class="table table-hover table-bordered">
+
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+               Grade
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        
+
+            @foreach (var student in Model.Students)
+    {
+        <tr>
+           
+                <td>
+                    @student.Name
+                </td>
+
+            @if (student.LetterGrade == null)
+            {
+                <td>No Grade yet</td>
+
+            }
+
+            else
+            {
+                 <td>@student.LetterGrade</td>
+
+            }
+
+
+
+            @if (student.LetterGrade == null)
+            {
+                <td>
+                    <form method="post" asp-action="AssignGrade">
+                      <input type="hidden" name="studentId" value="@student.Id" />
+                        <input type="hidden" name="courseId" value="@Model.CourseId" />
+                        <select name="grade" asp-items="@Html.GetEnumSelectList<Grade>()"></select>
+                        <input type="submit"class="btn btn-success btn-sm" />
+                    </form>
+                  
+                </td>
+            }
+
+        </tr>
+}
+      
+    </tbody>
+
+
+</table>

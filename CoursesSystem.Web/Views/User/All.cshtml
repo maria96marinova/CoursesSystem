@@ -1,0 +1,62 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "All Users";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+
+}
+
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var user in Model.Users)
+            {
+            <tr>
+
+
+                <td>@user.Username</td>
+                <td>@user.Email</td>
+
+                <form method="post" asp-action="addtorole">
+                    <input name="userId" type="hidden" value="@user.Id" />
+
+                    <td>
+                        <select asp-items="@Model.Roles" name="role" asp-for="@Model.RoleId"></select>
+                    </td>
+                    <td>
+                        <input class="btn btn-primary btn-sm" type="submit" value="Add To Role" />
+                    </td>
+                </form>
+
+                <td>
+                    <a class="btn btn-default btn-sm" href="/user/roles?userId=@user.Id">See Roles</a>
+
+                </td>
+
+            </tr>
+            }
+
+
+        </tbody>
+
+    </table>
+
+

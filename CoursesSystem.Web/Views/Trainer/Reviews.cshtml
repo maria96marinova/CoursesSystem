@@ -1,0 +1,24 @@
+﻿@model ReviewBasicViewModel
+@{
+    ViewData["Title"] = $"Reviews for {Model.CourseTitle}";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+@foreach (var r in Model.Reviews)
+{
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            @r.Content
+
+        </div>
+
+    </div>
+
+}
+
+
+
+
+

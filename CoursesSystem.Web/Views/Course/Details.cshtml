@@ -1,0 +1,41 @@
+﻿@model CourseServiceModel
+
+
+<h2>@Model.Title</h2>
+
+<div class="container">
+    @Model.Description <br />
+    @Model.StartDate <br />
+    @Model.EndDate<br />
+    <h3>Number of Students:</h3>
+    @Model.NumberStudents <br />
+
+    @if (Model.isStudentRegistered)
+    {
+        <form method="post" asp-controller="Course" asp-action="SignOut">
+            <input type="hidden" value=@Model.Id name="courseId"/>
+            <input type="submit" value="Sign Out" class="btn btn-success" />
+         </form>
+     }
+
+            @if (User.Identity.IsAuthenticated && !Model.isStudentRegistered)
+            {
+
+                <form method="post" asp-controller="Course" asp-action="Register">
+                    <input type="hidden" value=@Model.Id name="courseId" />
+
+                    <input type="submit" value="Register" class="btn btn-success" />
+                </form>
+            }
+
+            else if(!User.Identity.IsAuthenticated)
+            {
+                <div>
+                    To register for this course,please log in.
+                    <a class="btn btn-default" asp-controller="Account" asp-action="Login" asp-route-returnUrl="/course/details?courseId=@Model.Id">Log In</a>
+                </div>
+
+            }
+
+    </div>
+

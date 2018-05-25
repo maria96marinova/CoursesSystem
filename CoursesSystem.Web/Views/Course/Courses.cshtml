@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CourseBasicModel>
+
+@{
+    ViewData["Title"] = "Your Courses";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+
+            <th>
+                Start Date
+            </th>
+
+            <th>
+                End Date
+            </th>
+
+            <th>
+                Trainer
+            </th>
+
+            <th>
+                Grade
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var course in Model)
+        {
+
+            <tr>
+                <td>
+                    @course.Title
+
+                </td>
+
+                <td>
+                    @course.StartDate
+                </td>
+
+                <td>
+                    @course.EndDate
+                </td>
+
+                <td>
+                    @course.Trainer
+                </td>
+
+                    @if (course.Grade==null)
+                    {
+                        <td>No Grade yet</td>
+                    }
+
+                    else
+                    {
+                        <td>@course.Grade</td>
+
+                    }
+
+
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+

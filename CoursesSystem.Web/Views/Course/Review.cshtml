@@ -1,0 +1,26 @@
+﻿@model FeedbackFormModel
+@{
+    ViewData["Title"] = "Review";
+}
+
+<h2>Review</h2>
+
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="Courses"></label>
+        <select asp-for="CourseId" asp-items="@Model.Courses" class="form-control"></select>
+
+
+        <label asp-for="Content"></label>
+        <input type="text" asp-for="Content" class="form-control" required />
+        <br />
+        <span asp-validation-for="Content" class="alert-danger"></span>
+        <br />
+
+
+        <input type="submit" value="Review" class="btn btn-success" />
+    </div>
+
+</form>
+

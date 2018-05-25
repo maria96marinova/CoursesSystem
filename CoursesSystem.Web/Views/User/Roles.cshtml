@@ -1,0 +1,15 @@
+﻿@model IEnumerable<string>
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h2>@ViewData["Roles"]</h2>
+
+<div>
+    @foreach(var role in Model)
+    {
+        <div>@role</div>
+
+    }
+</div>
+
